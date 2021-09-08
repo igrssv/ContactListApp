@@ -12,7 +12,6 @@ class ContactListViewController: UITableViewController {
     private let contact = DataManager.getContactList()
     
     override func viewDidLoad() {
-        print(contact)
         super.viewDidLoad()
         
     }
@@ -26,9 +25,8 @@ class ContactListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath)
         
         var content = cell.defaultContentConfiguration()
-        
         content.text =  contact[indexPath.row].fullName
-
+        
         cell.contentConfiguration = content
 
         return cell
@@ -36,14 +34,19 @@ class ContactListViewController: UITableViewController {
     
 
 
-    /*
-    // MARK: - Navigation
+  
+//     MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        guard let setContactVC = segue.destination as? SetContactViewController else { return }
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        setContactVC.title = contact[indexPath.row].fullName
+        setContactVC.phone = contact[indexPath.row].phone
+        setContactVC.mail = contact[indexPath.row].mail
+        
+        
+        
     }
-    */
+
 
 }

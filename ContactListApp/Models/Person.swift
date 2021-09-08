@@ -15,12 +15,16 @@ struct Person {
     
     var fullName: String {
         name + " " + surname }
+    
+    var fullPhone: String {
+        iconPhone + " " + phone
+    }
+    
+    var fullMail: String {
+        iconMail + " " + mail
+    }
 }
 
 
-struct Phone{
-    var phone: String
-    var icon: String
-}
 
 

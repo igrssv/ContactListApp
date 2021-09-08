@@ -10,9 +10,8 @@ import UIKit
 class SecondContactListViewController: UITableViewController {
     
     let contact = DataManager.getContactList()
-    var nameSection: String = ""
+
     override func viewDidLoad() {
-        
         super.viewDidLoad()
 
     }
@@ -20,12 +19,10 @@ class SecondContactListViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return contact.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         2
     }
 
@@ -34,35 +31,22 @@ class SecondContactListViewController: UITableViewController {
         return text
     }
     
-    
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactSecondCell", for: indexPath)
         
         var content = cell.defaultContentConfiguration()
-        var test = tableView.numberOfRows(inSection: 2)
 
-        content.text  = contact[test].mail
-
-
-
-
+        // мне кажется есть реализация проще и правильнее, жду комментариев
+        if indexPath.row == 0 {
+            
+            content.text  = contact[indexPath.row].fullPhone
+        }else if indexPath.row == 1{
+            content.text  = contact[indexPath.row - 1].fullMail
+        }
 
         cell.contentConfiguration = content
-        
-        // Configure the cell...
         
         return cell
     }
     
-
-
-    
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-    }
-    
-
 }
